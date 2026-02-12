@@ -1,5 +1,7 @@
 // components/RatingBadges.tsx
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 
 type Badge = {
   name: "Google" | "Tripadvisor" | "Trustpilot";
@@ -114,11 +116,50 @@ export default function RatingBadges({
     ...(trustpilot ? [{ name: "Trustpilot" as const, ...trustpilot }] : []),
   ];
 
+  const mobileScrollerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = mobileScrollerRef.current;
+    if (!el) return;
+
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReducedMotion) return;
+
+    const tick = () => {
+      if (!el) return;
+      const maxLeft = el.scrollWidth - el.clientWidth;
+      if (maxLeft <= 0) return;
+
+      const nextLeft = el.scrollLeft + 240;
+      if (nextLeft >= maxLeft - 8) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollTo({ left: nextLeft, behavior: "smooth" });
+      }
+    };
+
+    const id = window.setInterval(tick, 2500);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      {data.map((b) => (
-        <BadgeCard key={b.name} b={b} />
-      ))}
-    </div>
+    <>
+      <div
+        ref={mobileScrollerRef}
+        className={`flex items-center gap-3 overflow-x-auto whitespace-nowrap sm:hidden ${className}`}
+      >
+        {data.map((b) => (
+          <div key={b.name} className="shrink-0">
+            <BadgeCard b={b} />
+          </div>
+        ))}
+      </div>
+
+      <div className={`hidden sm:flex sm:flex-wrap sm:items-center sm:gap-3 ${className}`}>
+        {data.map((b) => (
+          <BadgeCard key={b.name} b={b} />
+        ))}
+      </div>
+    </>
   );
 }

@@ -538,11 +538,19 @@ const TrustBanner = () => (
             </a>
             </div>
 
+            <div className="mt-6 flex justify-center sm:hidden">
+              <RatingBadges
+                google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
+                tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
+                trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
+              />
+            </div>
+
 
           </motion.div>
 
         </div>
-          <div className="absolute left-1/2 bottom-4 z-10 -translate-x-1/2">
+          <div className="absolute left-1/2 bottom-4 z-10 hidden -translate-x-1/2 sm:block">
           <RatingBadges
             google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
             tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
