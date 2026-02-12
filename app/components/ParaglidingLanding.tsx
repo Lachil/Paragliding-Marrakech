@@ -15,6 +15,10 @@ import {
   Sun,
   Timer,
 } from "lucide-react";
+import RatingBadges from "./RatingBadges";
+
+import Image from "next/image";
+import { useMediaQuery } from "@mui/material";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=212628065009";
 const PHONE = "+212 628-065009";
@@ -275,7 +279,83 @@ export default function ParaglidingLanding() {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: eventName, ...(payload || {}) });
   }
+  const isDesktop = useMediaQuery("(min-width : 1024px)");
+   const isMobile = useMediaQuery("(max-width : 1024px)")
+// --- NEUE KOMPONENTE: ReviewBar ---
+// Fügen Sie dies zu den anderen Komponenten in app/page.tsx hinzu
+
+const ReviewBar = () => (
+  <div className=" border-b border-slate-800 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center text-center md:text-left">
+        
+        {/* 1. GOOGLE REVIEWS */}
+        <div className="flex flex-col items-center md:items-start gap-1">
+          <div className="flex items-center gap-2 mb-1">
+            {/* Google Logo SVG */}
+            <svg className="h-6 w-auto" viewBox="0 0 92 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.24 25.12c-7.04 0-12.24-5.2-12.24-12.56S5.2 0 12.24 0c3.6 0 6.24 1.36 8.32 3.28l-3.36 3.36c-1.36-1.28-3.04-2.16-4.96-2.16-4.08 0-7.36 3.36-7.36 7.92s3.28 7.92 7.36 7.92c3.44 0 5.44-1.84 6.24-3.52H12.24v-4.4h10.96c.16.8.24 1.6.24 2.64 0 6.96-4.8 10.08-11.2 10.08zM41.76 8.8c-4.56 0-8.24 3.44-8.24 8.08 0 4.56 3.68 8.08 8.24 8.08 4.56 0 8.24-3.44 8.24-8.08 0-4.56-3.68-8.08-8.24-8.08zm0 12.72c-2.48 0-4.72-2.08-4.72-4.64 0-2.64 2.24-4.64 4.72-4.64 2.48 0 4.72 2.08 4.72 4.64 0 2.56-2.24 4.64-4.72 4.64zM24.08 8.8c-4.56 0-8.24 3.44-8.24 8.08 0 4.56 3.68 8.08 8.24 8.08 4.56 0 8.24-3.44 8.24-8.08 0-4.56-3.68-8.08-8.24-8.08zm0 12.72c-2.48 0-4.72-2.08-4.72-4.64 0-2.64 2.24-4.64 4.72-4.64 2.48 0 4.72 2.08 4.72 4.64 0 2.56-2.24 4.64-4.72 4.64zM68.56 8.8c-2.4 0-4.08 1.04-4.88 2.48h-.08v-2.08h-3.44v15.36h3.6v-7.84c0-2.08.8-4.08 3.04-4.08 2.16 0 2.8 1.6 2.8 3.92v8h3.6v-8.4c0-4.16-2.24-7.36-6.64-7.36zM51.84 24.96h3.6V2.32h-3.6v22.64zM83.04 18.08c0-2.48 1.92-4.64 4.4-4.64 2.08 0 3.36 1.12 3.92 2.32l3.12-1.36c-1.2-2.32-3.76-4.24-7.04-4.24-4.48 0-8.16 3.52-8.16 8.08 0 4.48 3.6 8.08 8.08 8.08 3.44 0 5.68-1.76 6.8-4.16l-2.96-1.36c-.64 1.2-2.08 2.08-3.84 2.08-2.24 0-3.92-1.36-4.32-3.44h11.6v-1.36h-.04z" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <div className="flex gap-1 mb-1">
+             {[...Array(5)].map((_, i) => (
+               <Star key={i} className="w-5 h-5 text-orange-400 fill-orange-400" />
+             ))}
+          </div>
+          <a href="#" className="text-gray-400 text-sm hover:text-white underline decoration-gray-600 underline-offset-4 transition">
+            Based on 800+ reviews
+          </a>
+        </div>
+
+        {/* 2. TRUSTPILOT */}
+        <div className="flex flex-col items-center md:items-start gap-1 border-l-0 md:border-l border-gray-700 md:pl-8">
+           <div className="flex items-center gap-2 mb-1">
+             {/* Trustpilot Star Icon */}
+             <Star className="w-6 h-6 text-green-500 fill-green-500" />
+             <span className="text-white font-bold text-lg">Trustpilot</span>
+           </div>
+           <div className="flex gap-1 mb-1">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="bg-green-500 p-1 rounded-sm">
+                   <Star className="w-3 h-3 text-white fill-white" />
+                </div>
+              ))}
+           </div>
+           <div className="text-sm">
+             <span className="text-white font-semibold mr-1">TrustScore 5.0</span>
+             <a href="https://de.trustpilot.com/review/atlastrekkers.com" target="_blank" className="text-gray-400 underline decoration-gray-600 underline-offset-4 hover:text-white transition">
+                1,781 reviews
+             </a>
+           </div>
+        </div>
+
+        {/* 3. TRIPADVISOR */}
+        <div className="flex flex-col items-center md:items-start gap-1 border-l-0 md:border-l border-gray-700 md:pl-8">
+           <div className="flex items-center gap-2 mb-1">
+              {/* TripAdvisor Logo Text (vereinfacht) */}
+              <span className="text-white font-bold text-xl tracking-tight">Tripadvisor</span>
+           </div>
+           <div className="flex gap-1 mb-1">
+              {[...Array(5)].map((_, i) => (
+                 <div key={i} className="w-4 h-4 rounded-full border border-green-500 bg-green-500 relative flex items-center justify-center">
+                   <div className="w-2 h-2 bg-white rounded-full"></div>
+                 </div>
+              ))}
+           </div>
+           <div className="text-sm">
+             <span className="text-white font-semibold mr-1">#3 of 200+</span>
+             <a href="https://www.tripadvisor.de/Attraction_Review-g3239562-d20044179-Reviews-Atlas_Trekkers-Aguergour_Marrakech_Safi.html" target="_blank" className="text-gray-400 underline decoration-gray-600 underline-offset-4 hover:text-white transition">
+               Best in Morocco
+             </a>
+           </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+);
 const TrustBanner = () => (
+    
   <div className="bg-slate-50 py-4 border-b border-gray-200">
     <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
       <div className="flex items-center gap-2">
@@ -285,14 +365,32 @@ const TrustBanner = () => (
         </span>
       </div>
       <div className="flex items-center gap-4">
-        <a href="https://de.trustpilot.com/review/atlastrekkers.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 group">
-          <Star className="w-5 h-5 text-green-500 fill-green-500" />
-          <Star className="w-5 h-5 text-green-500 fill-green-500" />
-          <Star className="w-5 h-5 text-green-500 fill-green-500" />
-          <Star className="w-5 h-5 text-green-500 fill-green-500" />
-          <Star className="w-5 h-5 text-green-500 fill-green-500" />
-          <span className="text-sm font-medium text-slate-900 ml-2 group-hover:underline">See Trustpilot Reviews</span>
-        </a>
+       <div className="mt-0">
+              <div>
+                <button
+                  onClick={() =>
+                    window.scrollTo({ top: 4400, behavior: "smooth" })
+                  }
+                  className=" hover:text-indigo-500"
+                >
+                  <div className="flex py-1">
+                    <Image
+                      src="https://cdn.shopify.com/s/files/1/0835/9431/4024/files/stars-5.svg?v=1721053276"
+                      width={isDesktop ? 100 : 70}
+                      height={isDesktop ? 40 : 30}
+                      alt="Reviews"
+                      loading="lazy"
+                    />
+                    <span className="px-3 text-xs md:text-lg">
+                      {" "}
+                      <span className="">
+                        Reviews 172 • Excellent
+                      </span>{" "}
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
       </div>
     </div>
   </div>
@@ -442,8 +540,17 @@ const TrustBanner = () => (
 
 
           </motion.div>
+
+        </div>
+          <div className="absolute left-1/2 bottom-4 z-10 -translate-x-1/2">
+          <RatingBadges
+            google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
+            tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
+            trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
+          />
         </div>
       </section>
+      
                    <TrustBanner />
 
       {/* ABOUT */}
