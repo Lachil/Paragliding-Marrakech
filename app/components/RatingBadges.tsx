@@ -60,9 +60,10 @@ const BadgeCard = ({ b }: { b: Badge }) => {
   return (
     <div className="rounded-2xl bg-black/55 px-4 py-3 backdrop-blur-md ring-1 ring-white/10">
       <div className="flex items-center gap-2">
-        {b.name === "Google" && <GoogleIcon />}
-        {b.name === "Tripadvisor" && <TripadvisorIcon />}
         {b.name === "Trustpilot" && <TrustpilotIcon />}
+                {b.name === "Tripadvisor" && <TripadvisorIcon />}
+
+        {b.name === "Google" && <GoogleIcon />}
       </div>
 
       <div className="mt-1 flex items-center gap-2">

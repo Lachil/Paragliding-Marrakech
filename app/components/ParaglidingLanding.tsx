@@ -81,7 +81,7 @@ const AboutSection = () => (
                     />
                     <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
                         <div className="flex items-center gap-2 mb-2">
-                             <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
+                             <Star className="w-5 h-5 text-emerald-400 fill-emerald-500 " />
                              <span className="font-bold text-slate-900">Top Rated</span>
                         </div>
                         <p className="text-sm text-slate-600">"An unforgettable experience with the best team in Morocco."</p>
@@ -111,9 +111,12 @@ const AboutSection = () => (
                         </div>
                     </div>
                     <div className="mt-8">
-                         <a href="https://www.trustpilot.com/review/atlastrekkers.com" target="_blank" >
-                            Read our Tripadvisor Reviews &rarr;
-                        </a>
+                        <RatingBadges
+                              trustpilot={{ rating: 4.8, reviewsText: "192 reviews" }}
+                tripadvisor={{ rating: 4.8, reviewsText: "37 reviews" }}
+
+                google={{ rating: 4.9, reviewsText: "47 reviews" }}
+              />
                     </div>
                 </div>
             </div>
@@ -356,42 +359,15 @@ const ReviewBar = () => (
 );
 const TrustBanner = () => (
     
-  <div className="bg-slate-50 py-4 border-b border-gray-200">
+  <div className="bg-slate-50 py-4 border-b border-gray-200 text-center flex">
     <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <ShieldCheck className="w-5 h-5  text-slate-900" />
         <span className="text-sm font-semibold text-slate-700">
-          Powered by <span className="font-bold">Atlas Trekkers</span> – Top 3 Rated Agency in Morocco
+          Powered by <span className="font-bold">Atlas Trekkers</span> – Top 3 Rated Agency in Morocco (Trustpilot)
         </span>
       </div>
-      <div className="flex items-center gap-4">
-       <div className="mt-0">
-              <div>
-                <button
-                  onClick={() =>
-                    window.scrollTo({ top: 4400, behavior: "smooth" })
-                  }
-                  className=" hover:text-indigo-500"
-                >
-                  <div className="flex py-1">
-                    <Image
-                      src="https://cdn.shopify.com/s/files/1/0835/9431/4024/files/stars-5.svg?v=1721053276"
-                      width={isDesktop ? 100 : 70}
-                      height={isDesktop ? 40 : 30}
-                      alt="Reviews"
-                      loading="lazy"
-                    />
-                    <span className="px-3 text-xs md:text-lg">
-                      {" "}
-                      <span className="">
-                        Reviews 172 • Excellent
-                      </span>{" "}
-                    </span>
-                  </div>
-                </button>
-              </div>
-            </div>
-      </div>
+      
     </div>
   </div>
 );
@@ -527,7 +503,7 @@ const TrustBanner = () => (
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <PrimaryBtn onClick={() => { pushDL("book_click", { source: "hero" }); location.href = "#booking"; }}>
+              <PrimaryBtn onClick={() => { pushDL("book_click", { source: "hero" }); location.href = "#tours"; }}>
                 Book Your Flight <ArrowRight className="h-4 w-4" />
               </PrimaryBtn>
                <a
@@ -540,9 +516,10 @@ const TrustBanner = () => (
 
             <div className="mt-6 flex justify-center sm:hidden">
               <RatingBadges
-                google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
+                              trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
                 tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
-                trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
+
+                google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
               />
             </div>
 
@@ -552,9 +529,9 @@ const TrustBanner = () => (
         </div>
           <div className="absolute left-1/2 bottom-4 z-10 hidden -translate-x-1/2 sm:block">
           <RatingBadges
-            google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
-            tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
-            trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
+            google={{ rating: 4.9, reviewsText: "Top rated experience" }}
+            tripadvisor={{ rating: 4.9, reviewsText: "Based on 38 reviews" }}
+            trustpilot={{ rating:  4.8, reviewsText: "192 reviews" }}
           />
         </div>
       </section>
