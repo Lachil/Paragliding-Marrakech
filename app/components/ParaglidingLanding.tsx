@@ -107,7 +107,7 @@ const AboutSection = () => (
                         </div>
                     </div>
                     <div className="mt-8">
-                         <a href="https://www.tripadvisor.de/Attraction_Review-g3239562-d20044179-Reviews-Atlas_Trekkers-Aguergour_Marrakech_Safi.html" target="_blank" >
+                         <a href="https://www.trustpilot.com/review/atlastrekkers.com" target="_blank" >
                             Read our Tripadvisor Reviews &rarr;
                         </a>
                     </div>
