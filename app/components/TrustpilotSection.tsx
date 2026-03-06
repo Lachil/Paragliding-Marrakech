@@ -6,7 +6,6 @@ type Badge = "Invited" | "Verified";
 
 type Review = {
   name: string;
-  dateLabel: string; // e.g., "October 21"
   title: string;
   text: string;
   stars: number;
@@ -122,7 +121,7 @@ export default function TrustpilotSection({
 
                 {/* Author + date */}
                 <div className="mt-3 text-sm text-slate-500">
-                  <span className="font-medium text-slate-700">{r.name}</span>, {r.dateLabel}
+                  <span className="font-medium text-slate-700">{r.name}</span>
                 </div>
 
                 {/* Title + text */}

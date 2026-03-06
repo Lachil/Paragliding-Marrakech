@@ -17,13 +17,44 @@ import {
 } from "lucide-react";
 import RatingBadges from "./RatingBadges";
 
-import Image from "next/image";
+import  TrustpilotSection  from "./TrustpilotSection";
 import { useMediaQuery } from "@mui/material";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=212628065009";
 const PHONE = "+212 628-065009";
 const EMAIL = "contact@atlastrekkers.com";
-
+const reviews = [
+  {
+    name: "Dheffy",
+    title: "Amazing experience",
+    text: "This is the best adventure to experience in Morocco😊😊 we enjoyed every bit of it. We paid for pickup and the rider was on time super friendly. We arrived at a spot and was offered tea and couscous. We were taken to the location and they were so friendly and welcoming, also polite. The experience was fun and intriguing. I recommend 😊😊",
+    stars: 5,
+  },
+  {
+  name:"Ariel Conant",
+    title: "Highly recommended",
+  text:"This was the highlight of our trip to Marrakesh. We were travelling with our two young kids and their grandmother, so I had a lot of questions about safety before we booked. They answered all of my questions, and were very responsive and helpful. We were interested in the paragliding, but they also arranged a sunrise hot air balloon ride, desert quad biking, camel rides, and a Berber dinner with fire show! At every step, they went above and beyond to make sure our whole group was included and taken care of. Everything was perfect, and everyone (kids, adults, and grandma!) had an amazing time. If I could give them 10 stars, I would!",
+    stars: 5,
+  },
+  {
+  name: "Keegan Martinjako",
+    title: "Beautiful views",
+  text: "Our driver was very friendly and pointed out some cool spots on the way and also let us stop by the lake on the way back. Our camel ride was smooth and we got some great photos. I was nervous for the paragliding, but by the time we got in the air it was smooth sailing with views of the mountain and desert. Good experience would recommend",
+    stars: 5,
+  },
+   {
+  name: "Dominic Borthwick",
+    title: "Beautiful views",
+  text: "Constant communication throughout the process, was even able to request a sunset flight. Views were incredible, staff were lovely, the flight itself was amazing; i would highly recommend to anyone!",
+    stars: 5,
+  },
+   {
+  name: "jamyla",
+    title: "Beautiful views",
+  text: " time!! The pilots were almost as entertaining as the experience. Friendly bunch and 10/10 views with amazing people.",
+    stars: 5,
+  },
+];
 type Tour = {
   title: string;
   desc: string;
@@ -845,9 +876,14 @@ const TrustBanner = () => (
         </div>
       </section>
               <AboutSection />
-
-      <Gallery />
-      {/* WHY US */}
+              <TrustpilotSection
+  rating={4.8}
+  reviewsCount={196}
+  trustpilotLink="https://www.trustpilot.com/review/atlastrekkers.com"
+  reviews={reviews}
+/>  
+            <Gallery />
+    {/* WHY US */}
       <section id="why" className="bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-2xl font-bold tracking-tight mb-8">Why Choose Us?</h2>
