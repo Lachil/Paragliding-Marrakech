@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -40,32 +40,217 @@ type Tour = {
 };
 function Gallery() {
   const imgs = [
-    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_28-10-2022_18_10_16.jpg?v=1769372271",
-    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/WhatsApp_Image_2025-04-07_at_18.07.01.jpg?v=1769372092",
+    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/afabce21-6515-418d-b60c-51c258dc3f11.jpg?v=1772813091",
+    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/IMG_4704.heic?v=1772812403",
     "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_07-08-2024_11_34_41_5.jpg?v=1769372065",
     "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_07-08-2024_11_34_41_5.jpg?v=1769372065",
     "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_04-08-2024_21_36_11.jpg?v=1769372002",
-    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/0890160950562e80002aa45ae08cc8940bced4da87101ebff97c5710c4dd71cd.webp?v=1761676183",
+    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/b1effef9-61b2-48d6-94c7-1486838d6461_2.jpg?v=1772812343",
+    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_16-04-2024_14_27_02.jpg?v=1772813723",
+    "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_29-03-2023_14_30_53.jpg?v=1772813777"
   ];
+  
+  const [open, setOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const preview = imgs.slice(0, 6);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (lightboxIndex !== null) setLightboxIndex(null);
+        else setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, lightboxIndex]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        setLightboxIndex((cur) => (cur === null ? cur : (cur - 1 + imgs.length) % imgs.length));
+      }
+      if (e.key === "ArrowRight") {
+        setLightboxIndex((cur) => (cur === null ? cur : (cur + 1) % imgs.length));
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightboxIndex, imgs.length]);
+
   return (
     <section id="gallery" className="bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-2xl font-bold tracking-tight mb-8">Gallery</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {imgs.map((src, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="overflow-hidden rounded-2xl"
-            >
-              <img src={src} alt={`Sky Paragliding Marrakech ${i + 1}`} className="h-48 w-full object-cover hover:scale-105 transition" />
-            </motion.div>
-          ))}
+          {preview.map((src, i) => {
+            const isLast = i === preview.length - 1;
+            if (isLast) {
+              return (
+                <motion.button
+                  key={i}
+                  type="button"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  onClick={() => setOpen(true)}
+                  className="relative h-48 w-full overflow-hidden rounded-2xl text-left"
+                >
+                  <img
+                    src={src}
+                    alt={`Quad Agadir ${i + 1}`}
+                    className="h-48 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/45" />
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <span className="inline-flex items-center gap-2 rounded-2xl bg-white/90 px-4 py-2 font-semibold text-slate-900 shadow">
+                      <Camera className="h-5 w-5" /> Show all photos
+                    </span>
+                  </div>
+                </motion.button>
+              );
+            }
+
+            return (
+              <motion.button
+                key={i}
+                type="button"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="overflow-hidden rounded-2xl"
+                onClick={() => {
+                  setOpen(true);
+                  setLightboxIndex(i);
+                }}
+              >
+                <img
+                  src={src}
+                  alt={`Quad Agadir ${i + 1}`}
+                  className="h-48 w-full object-cover hover:scale-105 transition"
+                />
+              </motion.button>
+            );
+          })}
         </div>
       </div>
+
+      {open && (
+        <div className="fixed inset-0 z-50">
+          <button
+            type="button"
+            aria-label="Close gallery"
+            onClick={() => {
+              setLightboxIndex(null);
+              setOpen(false);
+            }}
+            className="absolute inset-0 bg-black/70"
+          />
+          <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+            <div className="relative w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-2xl">
+              <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3 sm:px-6">
+                <div className="font-semibold">All photos</div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLightboxIndex(null);
+                    setOpen(false);
+                  }}
+                  className="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                >
+                  Close
+                </button>
+              </div>
+              <div className="max-h-[80vh] overflow-auto p-4 sm:p-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {imgs.map((src, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setLightboxIndex(i)}
+                      className="overflow-hidden rounded-2xl bg-slate-50"
+                    >
+                      <img
+                        src={src}
+                        alt={`Quad Agadir ${i + 1}`}
+                        className="h-40 w-full object-cover sm:h-48"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {lightboxIndex !== null && (
+            <div className="absolute inset-0 z-10">
+              <button
+                type="button"
+                aria-label="Close photo"
+                onClick={() => setLightboxIndex(null)}
+                className="absolute inset-0 bg-black/80"
+              />
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="relative w-full max-w-6xl">
+                  <div className="absolute right-0 top-0 z-10 p-2">
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(null)}
+                      className="rounded-xl bg-white/90 px-3 py-2 text-sm font-semibold text-slate-900 shadow hover:bg-white"
+                    >
+                      Close
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    aria-label="Previous photo"
+                    onClick={() =>
+                      setLightboxIndex((cur) =>
+                        cur === null ? cur : (cur - 1 + imgs.length) % imgs.length
+                      )
+                    }
+                    className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-2xl bg-white/80 px-3 py-2 text-sm font-semibold text-slate-900 shadow hover:bg-white"
+                  >
+                    Prev
+                  </button>
+
+                  <button
+                    type="button"
+                    aria-label="Next photo"
+                    onClick={() =>
+                      setLightboxIndex((cur) => (cur === null ? cur : (cur + 1) % imgs.length))
+                    }
+                    className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-2xl bg-white/80 px-3 py-2 text-sm font-semibold text-slate-900 shadow hover:bg-white"
+                  >
+                    Next
+                  </button>
+
+                  <img
+                    src={imgs[lightboxIndex]}
+                    alt={`Quad Agadir ${lightboxIndex + 1}`}
+                    className="mx-auto max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }
@@ -101,7 +286,7 @@ const AboutSection = () => (
                     </p>
                     <div className="flex gap-4">
                         <div className="flex flex-col">
-                            <span className="text-3xl font-bold text-slate-900">3k+</span>
+                            <span className="text-3xl font-bold text-slate-900">5k+</span>
                             <span className="text-sm text-slate-500">Happy Flyers</span>
                         </div>
                         <div className="w-px bg-gray-300 h-12"></div>
@@ -160,11 +345,11 @@ export default function ParaglidingLanding() {
     {
       title: "Paragliding Marrakech – Without Transfer",
       desc: "For travelers who come by their own car. Meet us in Aguergour and enjoy a breathtaking flight over the Atlas Mountains.",
-      priceFrom: 90,
+      priceFrom: 58,
       badge: "Self Drive",
-      img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_28-03-2023_13_49_43.jpg?v=1768153052",
+      img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/afabce21-6515-418d-b60c-51c258dc3f11.jpg?v=1772813091",
       details: {
-        duration: "2 hours (total)",
+        duration: " 4 hours (total)",
         flightTime: "10–20 min",
         includes: [
           "Certified tandem pilot",
@@ -176,29 +361,50 @@ export default function ParaglidingLanding() {
         suitable: "Beginners welcome – ages depend on conditions",
       },
     },
+    
     {
       title: "Paragliding Marrakech – Standard (Hotel Pickup)",
       desc: "Our most popular option: pickup in Marrakech, scenic drive, mint tea, and a safe tandem flight with pro pilots.",
-      priceFrom: 140,
+      priceFrom: 76,
       badge: "Most Popular",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_04-02-2023_18_27_36.jpg?v=1768152317",
       details: {
-        duration: "Half-day experience",
+                duration: " 4 hours (total)",
+
         flightTime: "10–20 min",
         includes: [
           "Round-trip hotel transfer (Marrakech)",
           "Certified pilot & modern gear",
           "Berber tea experience",
-          "Photos & video (GoPro when available)",
+          "Photos & video ",
         ],
         schedule: "Daily – flexible start times",
         suitable: "Solo travelers, couples, families",
       },
     },
     {
+  title: "Sunset Paragliding Marrakech",
+  desc: "Experience a magical sunset flight over the Atlas Mountains. Enjoy golden views above Aguergour and land as the sun sets behind the peaks.",
+  priceFrom: 85,
+  badge: "Sunset Experience",
+  img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Foto_04.07.24_13_29_47_6.jpg?v=1772812153",
+  details: {
+        duration: " 4 hours (total)",
+    flightTime: "10–20 min",
+    includes: [
+      "Certified tandem pilot",
+      "Safety equipment & briefing",
+      "Sunset mint tea on Berber terrace",
+      "Photos & short video",
+    ],
+    schedule: "Late afternoon – timed for sunset (weather dependent)",
+    suitable: "Beginners welcome – ages depend on conditions",
+  },
+},
+    {
       title: "Birthday Paragliding Experience",
       desc: "A special surprise flight for birthdays – includes extra moments and a memorable setup.",
-      priceFrom: 170,
+      priceFrom: 90,
       badge: "Birthday",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Birthday_Paragliding_Experience_A_special_surprise_flight_for_birthdays_includes_extra_moments_and_a_memorable_setup._for_2_Personen_1.jpg?v=1768151788",
       details: {
@@ -209,6 +415,7 @@ export default function ParaglidingLanding() {
           "Photos & video",
           "Mint tea break",
           "Hotel pickup (Marrakech)",
+          "Birthday cake (optional)",
         ],
         schedule: "Daily – book early for best timing",
         suitable: "Perfect for gifting & surprises",
@@ -217,7 +424,7 @@ export default function ParaglidingLanding() {
     {
       title: "Gift Voucher – Paragliding Marrakech",
       desc: "A digital voucher (PDF) – valid for 12 months. Perfect gift for friends or family.",
-      priceFrom: 140,
+      priceFrom: 76,
       badge: "Voucher",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Gift_Voucher_Paragliding_Atlas_Mountains.jpg?v=1768151997",
       details: {
@@ -233,32 +440,34 @@ export default function ParaglidingLanding() {
       },
     },
     {
-      title: "Paragliding + Quad + Agafay Dinner",
-      desc: "The ultimate adventure day: fly over the Atlas, ride quads in Agafay, and enjoy a sunset dinner camp experience.",
-      priceFrom: 240,
-      badge: "Full Day",
-      img: "https://images.unsplash.com/photo-1526779259212-939e64788e3c?auto=format&fit=crop&w=1600&q=80",
-      details: {
-        duration: "Full day",
-        flightTime: "10–20 min",
-        includes: [
-          "Paragliding experience",
-          "Quad biking in Agafay",
-          "Sunset dinner (camp experience)",
-          "Transfers included",
-        ],
-        schedule: "Daily – best for afternoon/sunset",
-        suitable: "Adventure lovers, groups",
-      },
-    },
+  title: "Paragliding + Quad + Lunch",
+  desc: "Enjoy an adventure day in the Atlas: start with a paragliding flight in Aguergour, continue with an exciting quad ride, and relax with a traditional Moroccan lunch.",
+  priceFrom: 110,
+  badge: "Adventure Combo",
+  img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/IMG_4704.heic?v=1772812403",
+  details: {
+    duration: "Half-day",
+    flightTime: "10–20 min",
+    includes: [
+      "Paragliding tandem flight",
+      "Quad biking experience",
+      "Traditional Moroccan lunch (15 $ per Person)",
+      "Hotel transfers (Marrakech)",
+      "Safety equipment & briefing",
+      "Mint tea break",
+    ],
+    schedule: "Daily – morning or afternoon",
+    suitable: "Adventure lovers, couples, small groups",
+  },
+},
     {
       title: "Paragliding + Camel Tour + Argan Cooperative",
       desc: "Combine sky views with Moroccan culture: camel ride + visit an argan oil cooperative after your flight.",
-      priceFrom: 190,
+      priceFrom: 80,
       badge: "Culture Combo",
-      img: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80",
+      img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/b1effef9-61b2-48d6-94c7-1486838d6461_2.jpg?v=1772812343",
       details: {
-        duration: "Half-day to full-day",
+        duration: "Half-day",
         flightTime: "10–20 min",
         includes: [
           "Paragliding flight",
