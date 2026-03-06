@@ -733,16 +733,24 @@ const TrustBanner = () => (
               <Pill>Operated by Atlas Trekkers</Pill>
               <Pill>Certified Pilots</Pill>
               <Pill>Photos & Video</Pill>
+              
             </div>
 
-            <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            <h1 className="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
               Sky Paragliding Marrakech – Fly Over the Atlas Mountains
             </h1>
-            <p className="mt-4 text-lg text-white/90">
+              {/* Starting price line (very clear, minimal) */}
+          <p className="mt-2 text-white/90">
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 text-sm ring-1 ring-white/20 backdrop-blur">
+              <span className="font-semibold text-white">Starting at €56</span>
+              <span className="text-white/70"> ·Flight time: 10–20 min</span>
+            </span>
+          </p>
+            <p className="mt-3 text-lg text-white/90">
               Safe tandem flights with fully insured professional pilots, breathtaking views, and a smooth booking experience. Perfect for couples, friends, families, and special occasions.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <PrimaryBtn onClick={() => { pushDL("book_click", { source: "hero" }); location.href = "#tours"; }}>
                 Book Your Flight <ArrowRight className="h-4 w-4" />
               </PrimaryBtn>
