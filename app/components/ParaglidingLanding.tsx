@@ -38,20 +38,20 @@ const reviews = [
   },
   {
   name: "Keegan Martinjako",
-    title: "Beautiful views",
-  text: "Our driver was very friendly and pointed out some cool spots on the way and also let us stop by the lake on the way back. Our camel ride was smooth and we got some great photos. I was nervous for the paragliding, but by the time we got in the air it was smooth sailing with views of the mountain and desert. Good experience would recommend",
+    title: "The paragliders were so friendly and…",
+  text: "The paragliders were so friendly and made our experience perfect! We loved it and would 100% try again with them",
     stars: 5,
   },
    {
-  name: "Dominic Borthwick",
-    title: "Beautiful views",
-  text: "Constant communication throughout the process, was even able to request a sunset flight. Views were incredible, staff were lovely, the flight itself was amazing; i would highly recommend to anyone!",
+  name: "Nagu",
+    title: "Very helpful and supportive team, great video for memory",
+  text: "It was great experience from the beginning to end. We called them at last minute (just few hours before on that day) as our other plan got cancelled. He was very communicative and supportive all the time. It was best day in whole marakesh trip. Thanks a lot. We finished paragliding without any wait and within 3-4 hours along with great video",
     stars: 5,
   },
    {
-  name: "jamyla",
-    title: "Beautiful views",
-  text: " time!! The pilots were almost as entertaining as the experience. Friendly bunch and 10/10 views with amazing people.",
+  name: "Blanca Kary",
+    title: "a fantastic trip you'll remember for a very long time",
+  text: " a wonderful landscape which gave us a change of scenery, a very helpful and attentif guide, real good local food twice a day, interesting information and always the feeling of being taken care of. A real fascinating experience which showed us the difference of standard of living and the need to help this courageous and very friendly population, a wish very often expressed by hamou, our very involved guide.",
     stars: 5,
   },
 ];
@@ -886,7 +886,7 @@ const TrustBanner = () => (
               <AboutSection />
               <TrustpilotSection
   rating={4.8}
-  reviewsCount={196}
+  reviewsCount={197}
   trustpilotLink="https://www.trustpilot.com/review/atlastrekkers.com"
   reviews={reviews}
 />  
