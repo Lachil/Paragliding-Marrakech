@@ -328,10 +328,10 @@ const AboutSection = () => (
                     </div>
                     <div className="mt-8">
                         <RatingBadges
-                              trustpilot={{ rating: 4.8, reviewsText: "192 reviews" }}
+                              trustpilot={{ rating: 4.8, reviewsText: "197 reviews" }}
                 tripadvisor={{ rating: 4.8, reviewsText: "37 reviews" }}
 
-                google={{ rating: 4.9, reviewsText: "47 reviews" }}
+                google={{ rating: 4.9, reviewsText: "51 reviews" }}
               />
                     </div>
                 </div>
@@ -437,7 +437,7 @@ export default function ParaglidingLanding() {
       desc: "A special surprise flight for birthdays – includes extra moments and a memorable setup.",
       priceFrom: 90,
       badge: "Birthday",
-      img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Birthday_Paragliding_Experience_A_special_surprise_flight_for_birthdays_includes_extra_moments_and_a_memorable_setup._for_2_Personen_1.jpg?v=1768151788",
+      img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/2023-11-08.webp?v=1774020411",
       details: {
         duration: "Half-day experience",
         flightTime: "10–20 min",
@@ -765,7 +765,7 @@ const TrustBanner = () => (
             <div className="mt-6 flex justify-center sm:hidden">
               <RatingBadges
                               trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
-                tripadvisor={{ rating: 4.8, reviewsText: "Top rated experience" }}
+                tripadvisor={{ rating: 4.8, reviewsText: "Based on 51 reviews" }}
 
                 google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
               />
@@ -777,9 +777,9 @@ const TrustBanner = () => (
         </div>
           <div className="absolute left-1/2 bottom-4 z-10 hidden -translate-x-1/2 sm:block">
           <RatingBadges
-            google={{ rating: 4.9, reviewsText: "Top rated experience" }}
-            tripadvisor={{ rating: 4.9, reviewsText: "Based on 38 reviews" }}
-            trustpilot={{ rating:  4.8, reviewsText: "192 reviews" }}
+            google={{ rating: 4.9, reviewsText: "Based on 51 reviews" }}
+            tripadvisor={{ rating: 4.9, reviewsText: "Based on 32 reviews" }}
+            trustpilot={{ rating:  4.8, reviewsText: "Based on 197 reviews" }}
           />
         </div>
       </section>

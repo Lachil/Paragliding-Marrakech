@@ -57,13 +57,24 @@ const TripadvisorIcon = () => (
 const BadgeCard = ({ b }: { b: Badge }) => {
   const isTrustpilot = b.name === "Trustpilot";
 
+  const href =
+    b.name === "Trustpilot"
+      ? "https://www.trustpilot.com/review/atlastrekkers.com"
+      : b.name === "Google"
+        ? "https://maps.app.goo.gl/ND4LZqowUeF57SCE8"
+        : "https://www.tripadvisor.de/Attraction_Review-g3239562-d20044179-Reviews-Atlas_Trekkers-Aguergour_Marrakech_Safi.html";
+
   return (
-    <div className="rounded-2xl bg-black/55 px-4 py-3 backdrop-blur-md ring-1 ring-white/10">
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="block rounded-2xl bg-black/55 px-4 py-3 backdrop-blur-md ring-1 ring-white/10 transition hover:bg-black/65 hover:ring-white/20"
+    >
       <div className="flex items-center gap-2">
         {b.name === "Trustpilot" && <TrustpilotIcon />}
-                {b.name === "Tripadvisor" && <TripadvisorIcon />}
-
         {b.name === "Google" && <GoogleIcon />}
+        {b.name === "Tripadvisor" && <TripadvisorIcon />}
       </div>
 
       <div className="mt-1 flex items-center gap-2">
@@ -96,7 +107,7 @@ const BadgeCard = ({ b }: { b: Badge }) => {
           <div>{b.reviewsText}</div>
         )}
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -112,9 +123,9 @@ export default function RatingBadges({
   trustpilot?: Omit<Badge, "name">;
 }) {
   const data: Badge[] = [
+    ...(trustpilot ? [{ name: "Trustpilot" as const, ...trustpilot }] : []),
     ...(google ? [{ name: "Google" as const, ...google }] : []),
     ...(tripadvisor ? [{ name: "Tripadvisor" as const, ...tripadvisor }] : []),
-    ...(trustpilot ? [{ name: "Trustpilot" as const, ...trustpilot }] : []),
   ];
 
   const mobileScrollerRef = useRef<HTMLDivElement | null>(null);
