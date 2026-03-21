@@ -610,7 +610,19 @@ const TrustBanner = () => (
           Powered by <span className="font-bold">Atlas Trekkers</span> – Top 3 Rated Agency in Morocco (Trustpilot)
         </span>
       </div>
-      
+
+      <a
+        href="/#gallery"
+        className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0835/9431/4024/files/ChatGPT_Image_21._Marz_2026_17_30_48.svg?v=1774114813"
+          alt="Gallery"
+          className="h-5 w-auto"
+          loading="lazy"
+        />
+        Gallery
+      </a>
     </div>
   </div>
 );
