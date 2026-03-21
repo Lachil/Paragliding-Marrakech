@@ -676,7 +676,7 @@ const TrustBanner = () => (
   }
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen overflow-x-hidden bg-white text-slate-900">
       {/* NAV */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-100">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
