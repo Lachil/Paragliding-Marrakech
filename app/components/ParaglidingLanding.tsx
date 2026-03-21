@@ -307,7 +307,7 @@ const AboutSection = () => (
                     <h4 className="text-slate-900 font-bold uppercase tracking-widest text-sm mb-2">Who We Are</h4>
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Part of the Atlas Trekkers Family</h2>
                     <p className="text-slate-600 mb-6 leading-relaxed">
-                        <strong>Sky Paragliding Marrakech</strong> are proud subsidiaries of 
+                        <strong>Atlas Trekkers PARAGLIDING Marrakech</strong> are proud subsidiaries of 
                         <a href="https://atlastrekkers.com" className="text-slate-900 hover:underline mx-1">Atlas Trekkers</a>.
                     </p>
                     <p className="text-slate-600 mb-6 leading-relaxed">
@@ -536,9 +536,12 @@ const ReviewBar = () => (
         <div className="flex flex-col items-center md:items-start gap-1">
           <div className="flex items-center gap-2 mb-1">
             {/* Google Logo SVG */}
-            <svg className="h-6 w-auto" viewBox="0 0 92 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.24 25.12c-7.04 0-12.24-5.2-12.24-12.56S5.2 0 12.24 0c3.6 0 6.24 1.36 8.32 3.28l-3.36 3.36c-1.36-1.28-3.04-2.16-4.96-2.16-4.08 0-7.36 3.36-7.36 7.92s3.28 7.92 7.36 7.92c3.44 0 5.44-1.84 6.24-3.52H12.24v-4.4h10.96c.16.8.24 1.6.24 2.64 0 6.96-4.8 10.08-11.2 10.08zM41.76 8.8c-4.56 0-8.24 3.44-8.24 8.08 0 4.56 3.68 8.08 8.24 8.08 4.56 0 8.24-3.44 8.24-8.08 0-4.56-3.68-8.08-8.24-8.08zm0 12.72c-2.48 0-4.72-2.08-4.72-4.64 0-2.64 2.24-4.64 4.72-4.64 2.48 0 4.72 2.08 4.72 4.64 0 2.56-2.24 4.64-4.72 4.64zM24.08 8.8c-4.56 0-8.24 3.44-8.24 8.08 0 4.56 3.68 8.08 8.24 8.08 4.56 0 8.24-3.44 8.24-8.08 0-4.56-3.68-8.08-8.24-8.08zm0 12.72c-2.48 0-4.72-2.08-4.72-4.64 0-2.64 2.24-4.64 4.72-4.64 2.48 0 4.72 2.08 4.72 4.64 0 2.56-2.24 4.64-4.72 4.64zM68.56 8.8c-2.4 0-4.08 1.04-4.88 2.48h-.08v-2.08h-3.44v15.36h3.6v-7.84c0-2.08.8-4.08 3.04-4.08 2.16 0 2.8 1.6 2.8 3.92v8h3.6v-8.4c0-4.16-2.24-7.36-6.64-7.36zM51.84 24.96h3.6V2.32h-3.6v22.64zM83.04 18.08c0-2.48 1.92-4.64 4.4-4.64 2.08 0 3.36 1.12 3.92 2.32l3.12-1.36c-1.2-2.32-3.76-4.24-7.04-4.24-4.48 0-8.16 3.52-8.16 8.08 0 4.48 3.6 8.08 8.08 8.08 3.44 0 5.68-1.76 6.8-4.16l-2.96-1.36c-.64 1.2-2.08 2.08-3.84 2.08-2.24 0-3.92-1.36-4.32-3.44h11.6v-1.36h-.04z" fill="#FFFFFF"/>
-            </svg>
+            <img
+              src="https://cdn.shopify.com/s/files/1/0835/9431/4024/files/ChatGPT_Image_21._Marz_2026_17_30_48.svg?v=1774114813"
+              alt="Google"
+              className="h-6 w-auto"
+              loading="lazy"
+            />
           </div>
           <div className="flex gap-1 mb-1">
              {[...Array(5)].map((_, i) => (
@@ -676,12 +679,19 @@ const TrustBanner = () => (
     <main className="min-h-screen bg-white text-slate-900">
       {/* NAV */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2 font-semibold">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white shadow">
-              🪂
-            </span>
-            <span className="tracking-tight">Marrakech Paragliding Sky</span>
+               <img
+              src="https://cdn.shopify.com/s/files/1/0835/9431/4024/files/ChatGPT_Image_21._Marz_2026_17_30_48.svg?v=1774114813"
+              alt="Google"
+              className="h-12 w-auto"
+              loading="lazy"
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="tracking-tight text-md">Paragdilding Marrakech</span>
+              <span className="tracking-tight text-xs text-slate-600">Atlas Trekkers</span>
+            </div>
+
           </a>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
@@ -736,8 +746,8 @@ const TrustBanner = () => (
               
             </div>
 
-            <h1 className="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Sky Paragliding Marrakech – Fly Over the Atlas Mountains
+            <h1 className="mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Paragdilding Marrakech – Fly Over the Atlas Mountains
             </h1>
               {/* Starting price line (very clear, minimal) */}
           <p className="mt-2 text-white/90">
@@ -764,10 +774,10 @@ const TrustBanner = () => (
 
             <div className="mt-6 flex justify-center sm:hidden">
               <RatingBadges
-                              trustpilot={{ rating: 5.0, reviewsText: "1,811 reviews" }}
-                tripadvisor={{ rating: 4.8, reviewsText: "Based on 51 reviews" }}
+                              trustpilot={{ rating: 4.8, reviewsText: "Based on 197 reviews" }}
+                tripadvisor={{ rating: 4.8, reviewsText: "Based on 32 reviews" }}
 
-                google={{ rating: 4.9, reviewsText: "Based on 800+ reviews" }}
+                google={{ rating: 4.9, reviewsText: "Based on 51 reviews" }}
               />
             </div>
 
@@ -791,9 +801,9 @@ const TrustBanner = () => (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div className="prose prose-slate max-w-none">
-              <h2 className="text-2xl font-bold tracking-tight">About Marrakech Paragliding Sky</h2>
+              <h2 className="text-2xl font-bold tracking-tight">About Atlas Trekkers Paragdilding Marrakech</h2>
               <p>
-                <strong>Marrakech Paragliding Sky</strong> is operated by <strong>Atlas Trekkers</strong>,
+                <strong>Atlas Trekkers Paragdilding Marrakech</strong> is operated by <strong>Atlas Trekkers</strong>,
                 one of Morocco’s leading adventure travel companies. We focus on safety, authenticity,
                 and unforgettable outdoor experiences — with certified pilots, modern gear, and smooth logistics.
               </p>
@@ -1090,7 +1100,7 @@ const TrustBanner = () => (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <h4 className="font-semibold">Marrakech Paragliding Sky</h4>
+              <h4 className="font-semibold">Atlas Trekkers Paragdilding Marrakech</h4>
               <p className="mt-3 text-sm text-slate-400">
                 Operated by Atlas Trekkers. Safe, authentic, and unforgettable paragliding experiences in Marrakech.
               </p>
@@ -1115,7 +1125,7 @@ const TrustBanner = () => (
           </div>
 
           <div className="mt-10 border-t border-white/10 pt-6 text-xs text-slate-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p>© {new Date().getFullYear()} Marrakech Paragliding Sky – Atlas Trekkers</p>
+            <p>© {new Date().getFullYear()} Atlas Trekkers Paragdilding Marrakech – Atlas Trekkers</p>
             <p>Domain: marrakechparaglidingsky.com</p>
           </div>
         </div>
