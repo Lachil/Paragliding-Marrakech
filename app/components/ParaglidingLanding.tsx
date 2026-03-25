@@ -19,8 +19,28 @@ import RatingBadges from "./RatingBadges";
 
 import  TrustpilotSection  from "./TrustpilotSection";
 import { useMediaQuery } from "@mui/material";
-
-const WHATSAPP_URL =   "https://api.whatsapp.com/send?phone=212628065009&text=Hey%20Atlas%20Trekkers%20Paragliding";
+export function WhatsAppFloat() {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-5 right-5 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:bg-green-600 transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32"
+        className="w-7 h-7 fill-white"
+      >
+        <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L0 32l8.4-2.4c2.3 1.3 4.9 2 7.6 2 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.3 0-4.6-.6-6.6-1.8l-.5-.3-5 1.4 1.4-4.9-.3-.5c-1.3-2-2-4.3-2-6.7C3 9 9 3 16 3s13 6 13 13-6 12.9-13 12.9zm7.1-9.6c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.5.3-.9.1-.4-.2-1.7-.6-3.3-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7 0-.2-.9-2.2-1.2-3-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.5.5 2 .7.8.2 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.8-.5z"/>
+      </svg>
+    </a>
+  );
+}
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Hi Atlas Trekkers"
+);
+const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=212628065009&text=${WHATSAPP_MESSAGE}`;
 const PHONE = "+212 628-065009";
 const EMAIL = "contact@atlastrekkers.com";
 const reviews = [
@@ -911,7 +931,7 @@ const TrustBanner = () => (
   reviewsCount={197}
   trustpilotLink="https://www.trustpilot.com/review/atlastrekkers.com"
   reviews={reviews}
-/>  
+/>  <WhatsAppFloat />
             <Gallery />
     {/* WHY US */}
       <section id="why" className="bg-slate-50">
