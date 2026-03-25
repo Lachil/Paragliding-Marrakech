@@ -20,7 +20,7 @@ import RatingBadges from "./RatingBadges";
 import  TrustpilotSection  from "./TrustpilotSection";
 import { useMediaQuery } from "@mui/material";
 
-const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=212628065009";
+const WHATSAPP_URL =   "https://api.whatsapp.com/send?phone=212628065009&text=Hey%20Atlas%20Trekkers%20Paragliding";
 const PHONE = "+212 628-065009";
 const EMAIL = "contact@atlastrekkers.com";
 const reviews = [
