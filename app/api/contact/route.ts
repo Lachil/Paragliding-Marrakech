@@ -171,7 +171,7 @@ export async function POST(request: Request) {
         <p><strong>Mobile Number:</strong> ${c.phone || "-"}</p>
         <p><strong>Date:</strong> ${c.date || "-"}</p>
         <p><strong>People:</strong> ${c.adults || c.persAdult || "-"}</p>
-        <p><strong>Product (pid):</strong> ${c.pid || "-"}</p>
+        <p><strong>Tour Atlas Paraglding:</strong> ${c.pid || "-"}</p>
         <p><strong>IP:</strong> ${clientIp}</p>
       </div>`;
 

@@ -661,10 +661,17 @@ const TrustBanner = () => (
 
     const name = String(fd.get("name") || "");
     const email = String(fd.get("email") || "");
+    const phone = String(fd.get("phone") || "");
     const date = String(fd.get("date") || "");
     const persons = String(fd.get("persons") || "");
     const message = String(fd.get("message") || "");
     const tour = String(fd.get("tour") || "Paragliding Marrakech – Standard (Hotel Pickup)");
+
+    if (!phone.trim()) {
+      setOk(false);
+      setError("Phone number is required.");
+      return;
+    }
 
     setSubmitting(true);
     setOk(null);
@@ -681,7 +688,11 @@ const TrustBanner = () => (
         body: JSON.stringify({
           name,
           email,
-          message: message || `Booking request: ${tour} on ${date} for ${persons} people.`,
+          message:
+            message ||
+            `Booking request: ${tour} on ${date} for ${persons} people. Phone: ${phone}`,
+          phone,
+          tour,
           pid: "Paragliding Marrakech – Booking Form",
           adults: persons,
           date,
@@ -1059,6 +1070,14 @@ const TrustBanner = () => (
                   name="email"
                   required
                   placeholder="Email"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-amber-300"
+                />
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="Phone"
                   className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-amber-300"
                 />
 
