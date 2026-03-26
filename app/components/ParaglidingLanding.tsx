@@ -7,6 +7,7 @@ import {
   BadgeCheck,
   Camera,
   Gift,
+  Mail,
   MapPin,
   MessageCircle,
   Phone,
@@ -1042,6 +1043,9 @@ const TrustBanner = () => (
                 <div className="flex flex-wrap gap-3">
                   <div className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 px-4 py-2 text-sm text-slate-700">
                     <Phone className="h-4 w-4" /> {PHONE}
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 px-4 py-2 text-sm text-slate-700">
+                    <Mail className="h-4 w-4" /> {EMAIL}
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 px-4 py-2 text-sm text-slate-700">
                     <MapPin className="h-4 w-4" /> Marrakech / Aguergour
