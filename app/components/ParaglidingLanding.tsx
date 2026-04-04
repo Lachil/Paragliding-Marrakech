@@ -80,6 +80,7 @@ type Tour = {
   title: string;
   desc: string;
   priceFrom: number;
+  discountPercent?: number;
   badge?: string;
   img: string;
   details: {
@@ -398,6 +399,7 @@ export default function ParaglidingLanding() {
       title: "Paragliding Marrakech – Without Transfer",
       desc: "For travelers who come by their own car. Meet us in Aguergour and enjoy a breathtaking flight over the Atlas Mountains.",
       priceFrom: 58,
+      discountPercent: 0,
       badge: "Self Drive",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/afabce21-6515-418d-b60c-51c258dc3f11.jpg?v=1772813091",
       details: {
@@ -419,7 +421,8 @@ export default function ParaglidingLanding() {
     {
       title: "Paragliding Marrakech – Standard (Hotel Pickup)",
       desc: "Our most popular option: pickup in Marrakech, scenic drive, mint tea, and a safe tandem flight with pro pilots.",
-      priceFrom: 76,
+      priceFrom: 90,
+      discountPercent: 20,
       badge: "Most Popular",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_04-02-2023_18_27_36.jpg?v=1768152317",
       details: {
@@ -442,7 +445,8 @@ export default function ParaglidingLanding() {
     {
   title: "Sunset Paragliding Marrakech",
   desc: "Experience a magical sunset flight over the Atlas Mountains. Enjoy golden views above Aguergour and land as the sun sets behind the peaks.",
-  priceFrom: 85,
+  priceFrom: 100,
+  discountPercent: 15,
   badge: "Sunset Experience",
   img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Foto_04.07.24_13_29_47_6.jpg?v=1772812153",
   details: {
@@ -464,7 +468,8 @@ export default function ParaglidingLanding() {
     {
       title: "Birthday Paragliding Experience",
       desc: "A special surprise flight for birthdays – includes extra moments and a memorable setup.",
-      priceFrom: 90,
+      priceFrom: 100,
+      discountPercent: 15,
       badge: "Birthday",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/2023-11-08.webp?v=1774020411",
       details: {
@@ -488,7 +493,8 @@ export default function ParaglidingLanding() {
     {
       title: "Gift Voucher – Paragliding Marrakech",
       desc: "A digital voucher (PDF) – valid for 12 months. Perfect gift for friends or family.",
-      priceFrom: 76,
+      priceFrom: 90,
+      discountPercent: 15,
       badge: "Voucher",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Gift_Voucher_Paragliding_Atlas_Mountains.jpg?v=1768151997",
       details: {
@@ -513,7 +519,8 @@ export default function ParaglidingLanding() {
     {
   title: "Paragliding + Quad + Lunch",
   desc: "Enjoy an adventure day in the Atlas: start with a paragliding flight in Aguergour, continue with an exciting quad ride, and relax with a traditional Moroccan lunch.",
-  priceFrom: 110,
+  priceFrom: 140,
+  discountPercent: 15,
   badge: "Adventure Combo",
   img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/IMG_4704.heic?v=1772812403",
   details: {
@@ -536,7 +543,8 @@ export default function ParaglidingLanding() {
     {
       title: "Paragliding + Camel Tour + Argan Cooperative",
       desc: "Combine sky views with Moroccan culture: camel ride + visit an argan oil cooperative after your flight.",
-      priceFrom: 80,
+      priceFrom: 110,
+      discountPercent: 15,
       badge: "Culture Combo",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/b1effef9-61b2-48d6-94c7-1486838d6461_2.jpg?v=1772812343",
       details: {
@@ -946,7 +954,28 @@ const TrustBanner = () => (
                   </ul>
 
                   <div className="mt-4 flex items-center justify-between">
-                    <div className="text-xl font-bold text-slate-900">from €{t.priceFrom}</div>
+                    <div>
+                      {(() => {
+                        const discountPercent = t.discountPercent ?? 0;
+                        if (discountPercent <= 0) {
+                          return (
+                            <div className="text-xl font-bold text-slate-900">from €{t.priceFrom}</div>
+                          );
+                        }
+
+                        const discountedPrice = Math.round(t.priceFrom * (1 - discountPercent / 100));
+
+                        return (
+                          <div className="flex items-baseline gap-2">
+                            <div className="text-xl font-bold text-slate-900">from €{discountedPrice}</div>
+                            <div className="text-sm text-slate-500 line-through">€{t.priceFrom}</div>
+                            <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+                              -{discountPercent}%
+                            </span>
+                          </div>
+                        );
+                      })()}
+                    </div>
                     <a
                       href="#booking"
                       onClick={() => pushDL("book_click", { source: "tour_card", tour: t.title })}
