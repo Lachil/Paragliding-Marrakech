@@ -308,7 +308,7 @@ function Gallery() {
   );
 }
 const AboutSection = () => (
-    <section id="about" className="py-20 bg-slate-50">
+    <section id="reviews" className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="relative">
@@ -1031,7 +1031,7 @@ const TrustBanner = () => (
       </section>
 
       {/* REVIEWS (simple block, du kannst hier deine Trustpilot-Komponente wiederverwenden) */}
-      <section id="reviews" className="bg-white">
+      <section  className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="rounded-3xl border border-slate-100 bg-slate-50 p-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
