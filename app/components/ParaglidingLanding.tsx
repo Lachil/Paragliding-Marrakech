@@ -398,8 +398,8 @@ export default function ParaglidingLanding() {
     {
       title: "Paragliding Marrakech – Without Transfer",
       desc: "For travelers who come by their own car. Meet us in Aguergour and enjoy a breathtaking flight over the Atlas Mountains.",
-      priceFrom: 58,
-      discountPercent: 10,
+      priceFrom: 60,
+      discountPercent: 0,
       badge: "Self Drive",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/afabce21-6515-418d-b60c-51c258dc3f11.jpg?v=1772813091",
       details: {
@@ -421,7 +421,7 @@ export default function ParaglidingLanding() {
     {
       title: "Paragliding Marrakech – Standard (Hotel Pickup)",
       desc: "Our most popular option: pickup in Marrakech, scenic drive, mint tea, and a safe tandem flight with pro pilots.",
-      priceFrom: 74,
+      priceFrom: 81.25,
       discountPercent: 20,
       badge: "Most Popular",
       img: "https://cdn.shopify.com/s/files/1/0835/9431/4024/files/Photo_04-02-2023_18_27_36.jpg?v=1768152317",
